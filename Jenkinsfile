@@ -1,4 +1,4 @@
-wq:pipeline {
+pipeline {
    agent any
    stages {
        stage('Build Code') {
@@ -7,6 +7,17 @@ wq:pipeline {
                echo "Building Artifact"
                """
            }
+       }
+       stage('Reading branch wise info')
+       {
+       when
+       {
+       branch "feature*"
+       }
+       steps
+       {
+       echo " It is only for Feature Branch"
+       }
        }
       stage('Deploy Code') {
           steps {
